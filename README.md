@@ -47,6 +47,7 @@ Este é o endpoint que irá receber as Transações. Cada transação consiste d
     "valor": 123.45,
     "dataHora": "2020-08-07T12:34:56.789-03:00"
 }
+```
 
 Os campos no JSON acima significam o seguinte:
 
