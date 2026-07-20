@@ -20,5 +20,14 @@ namespace Financial.Transaction.API.Controllers
 
             return Created();
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAllAsync(
+            [FromServices] ITransactionService transactionService)
+        {
+            transactionService.DeleteAll();
+
+            return Ok();
+        }
     }
 }

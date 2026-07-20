@@ -3,5 +3,7 @@
     public interface ITransactionService
     {
         void Add(Models.Entities.Transaction transaction);
+
+        void DeleteAll();
     }
 }
