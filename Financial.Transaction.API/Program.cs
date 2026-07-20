@@ -14,13 +14,12 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
         builder.Services.AddServices();
+        builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
-        {
             app.MapOpenApi();
-        }
 
         app.UseExceptionHandler();
         app.UseHttpsRedirection();

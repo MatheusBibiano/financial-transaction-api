@@ -19,8 +19,8 @@ namespace Financial.Transaction.API.Models.Requests
             return new Entities.Transaction
             {
                 Id = Guid.NewGuid(),
-                Value = Value,
-                DateTime = DateTime
+                Value = Value ?? 0m,
+                DateTime = DateTime ?? DateTimeOffset.UtcNow
             };
         }
     }
