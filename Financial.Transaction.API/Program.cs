@@ -15,6 +15,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
         builder.Services.AddServices();
+        builder.Services.AddHealthChecks();
         builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         builder.Services.Configure<StatisticsSettings>(
             builder.Configuration.GetSection(StatisticsSettings.Position)
@@ -30,6 +31,7 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
+        app.MapHealthChecks("health");
 
         app.Run();
     }
