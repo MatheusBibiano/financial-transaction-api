@@ -1,5 +1,6 @@
 using Financial.Transaction.API.Middlewares;
 using Financial.Transaction.API.Services;
+using Financial.Transaction.API.Settings;
 
 namespace Financial.Transaction.API;
 
@@ -15,6 +16,9 @@ public class Program
         builder.Services.AddOpenApi();
         builder.Services.AddServices();
         builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+        builder.Services.Configure<StatisticsSettings>(
+            builder.Configuration.GetSection(StatisticsSettings.Position)
+        );
 
         var app = builder.Build();
 

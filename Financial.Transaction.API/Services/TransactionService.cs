@@ -1,12 +1,20 @@
 ﻿using Financial.Transaction.API.Models.Entities;
 using Financial.Transaction.API.Services.Interfaces;
+using Financial.Transaction.API.Settings;
+using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 
 namespace Financial.Transaction.API.Services
 {
     public class TransactionService : ITransactionService
     {
+        private readonly StatisticsSettings _settings;
         private ConcurrentBag<Models.Entities.Transaction> _transactions = new();
+
+        public TransactionService(IOptions<StatisticsSettings> statisticsSettings)
+        {
+            _settings = statisticsSettings.Value;
+        }
 
         public void Add(Models.Entities.Transaction transaction)
         {
@@ -18,7 +26,7 @@ namespace Financial.Transaction.API.Services
 
         public Statistics CalculateStatistics()
         {
-            var timeLimit = DateTimeOffset.UtcNow.AddSeconds(-60);
+            var timeLimit = DateTimeOffset.UtcNow.AddSeconds(-_settings.WindowInSeconds);
 
             var recentTransactions = _transactions
                 .Where(transaction => transaction.DateTime >= timeLimit)
