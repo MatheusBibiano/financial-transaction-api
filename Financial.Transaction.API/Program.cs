@@ -1,6 +1,7 @@
 using Financial.Transaction.API.Middlewares;
 using Financial.Transaction.API.Services;
 using Financial.Transaction.API.Settings;
+using Scalar.AspNetCore;
 
 namespace Financial.Transaction.API;
 
@@ -23,12 +24,15 @@ public class Program
 
         var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
-            app.MapOpenApi();
-
         app.UseExceptionHandler();
         app.UseHttpsRedirection();
         app.UseAuthorization();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+            app.MapScalarApiReference();
+        }
 
         app.MapControllers();
         app.MapHealthChecks("health");
