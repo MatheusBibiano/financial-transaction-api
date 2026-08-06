@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="Financial.Transaction.API/Financial.Transaction.API.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/Financial.Transaction.API/Financial.Transaction.API.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Financial.Transaction.Tests/Financial.Transaction.Tests.csproj" Id="64844ec1-4153-43b5-af06-e833d3b6596b" />
+  </Folder>
 </Solution>
